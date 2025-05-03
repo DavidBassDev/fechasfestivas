@@ -5,25 +5,25 @@
         <artifactId>api</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
- 
+
     <artifactId>aplicacion</artifactId>
     <packaging>jar</packaging>
- 
+
     <dependencies>
         <dependency>
-            <groupId>fechasfestivas</groupId> 
+            <groupId>fechasfestivas</groupId> <!-- Ajusta según el paquete de tu proyecto -->
             <artifactId>dominio</artifactId>
-            <version>0.0.1-SNAPSHOT</version> 
+            <version>0.0.1-SNAPSHOT</version> <!-- O usa la versión que corresponda -->
         </dependency>
-         <dependency>
-            <groupId>fechasfestivas</groupId> 
+        <dependency>
+            <groupId>fechasfestivas</groupId> <!-- Ajusta según el paquete de tu proyecto -->
             <artifactId>infraestructura</artifactId>
-            <version>0.0.1-SNAPSHOT</version> 
+            <version>0.0.1-SNAPSHOT</version> <!-- O usa la versión que corresponda -->
         </dependency>
-         <dependency>
-            <groupId>fechasfestivas</groupId> 
+        <dependency>
+            <groupId>fechasfestivas</groupId> <!-- Ajusta según el paquete de tu proyecto -->
             <artifactId>core</artifactId>
-            <version>0.0.1-SNAPSHOT</version> 
+            <version>0.0.1-SNAPSHOT</version> <!-- O usa la versión que corresponda -->
         </dependency>
     </dependencies>
     <build>

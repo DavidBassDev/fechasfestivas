@@ -14,16 +14,16 @@ public class Festivo {
     @GenericGenerator(name="secuencia_festivo", strategy = "increment")
     @Column(name = "id")
     private int id;
-    @Column(name = "Nombre", length = 100)
+    @Column(name = "Nombre", length = 100, nullable = false)
     private String nombre;
-    @Column(name = "Dia")
+    @Column(name = "Dia", nullable = false)
     private int dia;
-    @Column(name = "Mes")
+    @Column(name = "Mes", nullable = false)
     private int mes;
-    @Column(name = "DiasPascua")
+    @Column(name = "DiasPascua", nullable = false)
     private int diasPascua;
     @ManyToOne
-    @JoinColumn(name = "IdTipo", referencedColumnName = "id")
+    @JoinColumn(name = "IdTipo", referencedColumnName = "id", nullable = false)
     private Tipo IdTipo;
 
     public Festivo() {

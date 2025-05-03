@@ -1,7 +1,7 @@
 package fechasfestivas.api.infraestructura.repositorios;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import fechasfestivas.api.dominio.*;
+import fechasfestivas.api.dominio.entidades.*;
 import java.util.List;
 
 
