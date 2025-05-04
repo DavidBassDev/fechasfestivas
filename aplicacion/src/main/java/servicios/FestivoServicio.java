@@ -1,12 +1,16 @@
 package fechasfestivas.api.aplicacion.servicios;
 
 import org.springframework.stereotype.Service;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import fechasfestivas.api.dominio.entidades.*;
 import fechasfestivas.api.core.servicios.*;
 import fechasfestivas.api.infraestructura.repositorios.*;
+
+
 
 
 @Service
@@ -18,17 +22,15 @@ public class FestivoServicio implements IFestivoServicio {
      public List<Festivo> listar(){
         return repositorio.findAll();
     }
-
+    @Override
     public List<Festivo> buscar(String nombre){
         return repositorio.buscar(nombre);
     }
-
+    @Override
     public Festivo obtener(int id) {
+    return repositorio.findById(id).orElse(null);
+}
 
-        return repositorio.findById(id).isEmpty() ? null : repositorio.findById(id).get(); // pregunta si esta vacio, si
-                                                                                           // es asi returna null, si no
-                                                                                           // la funcion findbyId
-    };
 
    
 

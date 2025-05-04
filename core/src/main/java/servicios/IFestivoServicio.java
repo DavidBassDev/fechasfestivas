@@ -7,6 +7,8 @@ import java.util.List;
 public interface IFestivoServicio {
 
     public List<Festivo> listar();
+    public List<Festivo> buscar(String nombre);
+    public Festivo obtener(int id);
 
     
 
