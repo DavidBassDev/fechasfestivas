@@ -18,7 +18,7 @@ public class ServicioFechas {
 
         int dia = dias + 15;
         int mes = 3;
-        return new Date(año - 1900, mes - 1, dia);
+        return new Date(año - 1900, mes - 1, dia+7);
 
     }
 
