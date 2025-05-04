@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import jakarta.persistence.*;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import fechasfestivas.api.dominio.entidades.Tipo;
 
 @Entity
 @Table(name = "Festivo")
@@ -24,18 +25,18 @@ public class Festivo {
     private int diasPascua;
     @ManyToOne
     @JoinColumn(name = "idtipo", referencedColumnName = "id", nullable = false)
-    private Tipo idTipo;
+    private Tipo tipo;
 
     public Festivo() {
     }
 
-    public Festivo(int id, String nombre, int dia, int mes, int diasPascua, Tipo idTipo) {
+    public Festivo(int id, String nombre, int dia, int mes, int diasPascua, Tipo tipo) {
         this.id = id;
         this.nombre = nombre;
         this.dia = dia;
         this.mes = mes;
         this.diasPascua = diasPascua;
-        this.idTipo = idTipo;
+        this.tipo = tipo;
     }
 
     public int getId() {
@@ -78,14 +79,15 @@ public class Festivo {
         this.diasPascua = diasPascua;
     }
 
-    public Tipo getIdTipo() {
-        return idTipo;
+    public Tipo getTipo() {
+        return tipo;
     }
 
-    public void setIdTipo(Tipo idTipo) {
-       this.idTipo = idTipo;
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
     }
 
+    
    
 
 }

@@ -3,15 +3,18 @@ package fechasfestivas.api.aplicacion.servicios;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fechasfestivas.api.dominio.entidades.*;
 import fechasfestivas.api.core.servicios.*;
 import fechasfestivas.api.infraestructura.repositorios.*;
 
 
- 
 
-public class TipoServicio {
+
+ 
+@Service
+public class TipoServicio  implements ITipoServicio{
     @Autowired
     private ITipoRepositorio repositorio;
 
@@ -19,11 +22,11 @@ public class TipoServicio {
 
         return repositorio.findAll();
     };
-
+    
     public List<Tipo> buscar(String tipo){
         return repositorio.buscar(tipo);
     }
-
+    
     public Tipo obtener(int id) {
 
         return repositorio.findById(id).isEmpty() ? null : repositorio.findById(id).get(); // pregunta si esta vacio, si
