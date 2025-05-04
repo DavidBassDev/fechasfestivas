@@ -25,11 +25,11 @@ public class FestivoServicio implements IFestivoServicio {
      public List<Festivo> listar(){
         return repositorio.findAll();
     }
-    @Override
+   
     public List<Festivo> buscar(String nombre){
         return repositorio.buscar(nombre);
     }
-    @Override
+   
     public Festivo obtener(int id) {
     return repositorio.findById(id).orElse(null);
 }
@@ -60,7 +60,7 @@ public class FestivoServicio implements IFestivoServicio {
     };
 
    //se requiere metodo de recibir el año,devuelve una lista construyendo cada festivo de la listaFestivos, segun el tipo de festivo
-   public List<Date> listaFestivos (int año) {
+   public List<Date> listaDiasFestivos (int año) {
     Date fecha;
     ServicioFechas servicio = new ServicioFechas();
      List<Festivo> listaFestivos = listar();
@@ -86,14 +86,14 @@ public class FestivoServicio implements IFestivoServicio {
 
     fecha = new Date(año - 1900, festivo.getMes() - 1, festivo.getDia());
 
-    fecha= servicio.getInicioSemanaSanta(año-1900);
+    fecha= servicio.getInicioSemanaSanta(año);
 
     nuevaLista.add(fecha);
     break;
 
     case 4: 
     fecha = new Date(año - 1900, festivo.getMes() - 1, festivo.getDia());
-    fecha = servicio.getInicioSemanaSanta(año-1900);
+    fecha = servicio.getInicioSemanaSanta(año);
     fecha = servicio.getSiguienteLunes(fecha);
     nuevaLista.add(fecha);
     break;

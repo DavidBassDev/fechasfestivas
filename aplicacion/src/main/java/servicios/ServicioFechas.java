@@ -47,4 +47,6 @@ public class ServicioFechas {
         return fecha;
     }
 
+    //aca debe ir el metodo para recibir la lista de festivos y validar si la fecha que recibe esta alli
+
 }
