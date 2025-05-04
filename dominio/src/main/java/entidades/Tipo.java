@@ -13,7 +13,7 @@ public class Tipo {
     @GenericGenerator(name="secuencia_tipo", strategy = "increment")
     @Column(name = "id")
     private int id;
-    @Column(name = "Tipo", length = 100, nullable = false)
+    @Column(name = "tipo", length = 100, nullable = false)
     private String tipo;
 
     public Tipo() {

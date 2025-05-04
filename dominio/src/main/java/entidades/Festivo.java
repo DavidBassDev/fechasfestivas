@@ -14,17 +14,17 @@ public class Festivo {
     @GenericGenerator(name="secuencia_festivo", strategy = "increment")
     @Column(name = "id")
     private int id;
-    @Column(name = "Nombre", length = 100, nullable = false)
+    @Column(name = "nombre", length = 100, nullable = false)
     private String nombre;
-    @Column(name = "Dia", nullable = false)
+    @Column(name = "dia", nullable = false)
     private int dia;
-    @Column(name = "Mes", nullable = false)
+    @Column(name = "mes", nullable = false)
     private int mes;
-    @Column(name = "DiasPascua", nullable = false)
+    @Column(name = "diaspascua", nullable = false)
     private int diasPascua;
     @ManyToOne
-    @JoinColumn(name = "IdTipo", referencedColumnName = "id", nullable = false)
-    private Tipo IdTipo;
+    @JoinColumn(name = "idtipo", referencedColumnName = "id", nullable = false)
+    private Tipo idTipo;
 
     public Festivo() {
     }
@@ -35,7 +35,7 @@ public class Festivo {
         this.dia = dia;
         this.mes = mes;
         this.diasPascua = diasPascua;
-        IdTipo = idTipo;
+        this.idTipo = idTipo;
     }
 
     public int getId() {
@@ -79,11 +79,11 @@ public class Festivo {
     }
 
     public Tipo getIdTipo() {
-        return IdTipo;
+        return idTipo;
     }
 
     public void setIdTipo(Tipo idTipo) {
-        IdTipo = idTipo;
+       this.idTipo = idTipo;
     }
 
    

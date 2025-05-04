@@ -8,16 +8,20 @@ import fechasfestivas.api.dominio.entidades.*;
 import fechasfestivas.api.core.servicios.*;
 import fechasfestivas.api.infraestructura.repositorios.*;
 
+
 @Service
 public class FestivoServicio implements IFestivoServicio {
 
     @Autowired
     private IFestivoRepositorio repositorio;
 
-    public List<Festivo> listar() {
-
+     public List<Festivo> listar(){
         return repositorio.findAll();
-    };
+    }
+
+    public List<Festivo> buscar(String nombre){
+        return repositorio.buscar(nombre);
+    }
 
     public Festivo obtener(int id) {
 
@@ -26,10 +30,7 @@ public class FestivoServicio implements IFestivoServicio {
                                                                                            // la funcion findbyId
     };
 
-    public List<Festivo> buscar(String nombre) {
-
-        return repositorio.buscar(nombre);
-    };
+   
 
     public Festivo agregar(Festivo nuevoFestivo) {
         nuevoFestivo.setId(0);

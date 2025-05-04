@@ -8,6 +8,7 @@ import fechasfestivas.api.dominio.entidades.*;
 import fechasfestivas.api.core.servicios.*;
 import fechasfestivas.api.infraestructura.repositorios.*;
 
+
  
 
 public class TipoServicio {
@@ -19,6 +20,10 @@ public class TipoServicio {
         return repositorio.findAll();
     };
 
+    public List<Tipo> buscar(String tipo){
+        return repositorio.buscar(tipo);
+    }
+
     public Tipo obtener(int id) {
 
         return repositorio.findById(id).isEmpty() ? null : repositorio.findById(id).get(); // pregunta si esta vacio, si
@@ -26,10 +31,7 @@ public class TipoServicio {
                                                                                            // la funcion findbyId
     };
 
-    public List<Tipo> buscar(String nombre) {
-
-        return repositorio.buscar(nombre);
-    };
+    
 
     public Tipo agregar(Tipo nuevoTipo) {
         nuevoTipo.setId(0);
