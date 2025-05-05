@@ -12,6 +12,7 @@ public interface IFestivoServicio {
     public Festivo obtener(int id);
     public Festivo agregar(Festivo nuevoFestivo);
     public List<Date> listaDiasFestivos (int año);
+    public String comprobacionFestivo (Date fecha);
 
     
 

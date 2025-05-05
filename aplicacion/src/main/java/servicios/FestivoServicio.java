@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import fechasfestivas.api.aplicacion.servicios.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import fechasfestivas.api.dominio.entidades.*;
@@ -18,6 +19,7 @@ public class FestivoServicio implements IFestivoServicio {
 
     @Autowired
     private IFestivoRepositorio repositorio;
+  
 
     public List<Festivo> listar() {
         return repositorio.findAll();
@@ -53,8 +55,7 @@ public class FestivoServicio implements IFestivoServicio {
         }
     };
 
-    // se requiere metodo de recibir el año,devuelve una lista construyendo cada
-    // festivo de la listaFestivos, segun el tipo de festivo
+    // Metodo para traer los dias festivos, segun el año
     public List<Date> listaDiasFestivos(int año) {
         Date fecha;
         ServicioFechas servicio = new ServicioFechas();
@@ -79,14 +80,14 @@ public class FestivoServicio implements IFestivoServicio {
                     break;
 
                 case 3:
-                    fecha = new Date(año-1900, festivo.getMes() - 1, festivo.getDia());
-                    fecha = servicio.agregarDias(domingoRamos,festivo.getDiasPascua());
-                     System.out.println("dias pascua "+festivo.getDiasPascua());
+                    fecha = new Date(año - 1900, festivo.getMes() - 1, festivo.getDia());
+                    fecha = servicio.agregarDias(domingoRamos, festivo.getDiasPascua());
+                    System.out.println("dias pascua " + festivo.getDiasPascua());
                     nuevaLista.add(fecha);
                     break;
 
                 case 4:
-                    
+
                     fecha = servicio.getSiguienteLunes(servicio.agregarDias(domingoRamos, festivo.getDiasPascua()));
                     nuevaLista.add(fecha);
                     break;
@@ -94,6 +95,42 @@ public class FestivoServicio implements IFestivoServicio {
 
         }
         return nuevaLista;
+
+    }
+
+    public String comprobacionFestivo(Date fechaEntrada) {
+        Calendar calendario = Calendar.getInstance();
+    calendario.setTime(fechaEntrada);
+    int año = calendario.get(Calendar.YEAR);
+    
+    String esFestivo = "No es festivo";
+    List<Date> listaFestivos = listaDiasFestivos(año);
+
+        
+
+        for (Date fecha : listaFestivos) {
+            //limpio las entradas, hay difernecias de segundos
+            Calendar fechaFestiva = Calendar.getInstance();
+        fechaFestiva.setTime(fecha);
+        fechaFestiva.set(Calendar.HOUR_OF_DAY, 0);
+        fechaFestiva.set(Calendar.MINUTE, 0);
+        fechaFestiva.set(Calendar.SECOND, 0);
+        fechaFestiva.set(Calendar.MILLISECOND, 0);
+        Calendar fechaEntradaCalendario = Calendar.getInstance();
+        fechaEntradaCalendario.setTime(fechaEntrada);
+        fechaEntradaCalendario.set(Calendar.HOUR_OF_DAY, 0);
+        fechaEntradaCalendario.set(Calendar.MINUTE, 0);
+        fechaEntradaCalendario.set(Calendar.SECOND, 0);
+        fechaEntradaCalendario.set(Calendar.MILLISECOND, 0);
+
+
+            if (fechaFestiva.equals(fechaEntradaCalendario)) {
+                esFestivo = "Es festivo";
+                break;
+            }
+        }
+
+        return esFestivo;
 
     }
 

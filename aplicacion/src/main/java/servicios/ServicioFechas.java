@@ -2,6 +2,9 @@ package fechasfestivas.api.aplicacion.servicios;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
+import fechasfestivas.api.aplicacion.servicios.FestivoServicio;
 
 public class ServicioFechas {
 
@@ -18,11 +21,11 @@ public class ServicioFechas {
 
         int dia = dias + 15;
         int mes = 3;
-        return new Date(año - 1900, mes - 1, dia+7);
+        return new Date(año - 1900, mes - 1, dia + 7);
 
     }
 
-    public static Date agregarDias(Date fecha,int diasParaSumar) {
+    public static Date agregarDias(Date fecha, int diasParaSumar) {
 
         Calendar calendario = Calendar.getInstance();
         calendario.setTime(fecha);
@@ -34,19 +37,22 @@ public class ServicioFechas {
     public static Date getSiguienteLunes(Date fecha) {
         Calendar calendario = Calendar.getInstance();
         calendario.setTime(fecha);
-        int diaSemana= calendario.get(Calendar.DAY_OF_WEEK);
+        int diaSemana = calendario.get(Calendar.DAY_OF_WEEK);
         calendario.setTime(fecha);
-        //SI DIA SEMANA COINCIDE NO SE MUEVE
-        if(diaSemana!=Calendar.MONDAY) {
+        // SI DIA SEMANA COINCIDE NO SE MUEVE
+        if (diaSemana != Calendar.MONDAY) {
 
-            if(diaSemana>Calendar.MONDAY) {
-                fecha = agregarDias(fecha,9-diaSemana);
-            } else {fecha = agregarDias(fecha,1);}
-            
-        } 
+            if (diaSemana > Calendar.MONDAY) {
+                fecha = agregarDias(fecha, 9 - diaSemana);
+            } else {
+                fecha = agregarDias(fecha, 1);
+            }
+
+        }
         return fecha;
     }
 
-    //aca debe ir el metodo para recibir la lista de festivos y validar si la fecha que recibe esta alli
+   
+    
 
 }
