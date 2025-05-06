@@ -2,7 +2,6 @@ package fechasfestivas.api.aplicacion.servicios;
 
 import org.springframework.stereotype.Service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import fechasfestivas.api.aplicacion.servicios.*;
 import java.util.ArrayList;
@@ -13,13 +12,11 @@ import fechasfestivas.api.dominio.entidades.*;
 import fechasfestivas.api.core.servicios.*;
 import fechasfestivas.api.infraestructura.repositorios.*;
 
-
 @Service
 public class FestivoServicio implements IFestivoServicio {
 
     @Autowired
     private IFestivoRepositorio repositorio;
-  
 
     public List<Festivo> listar() {
         return repositorio.findAll();
@@ -82,7 +79,7 @@ public class FestivoServicio implements IFestivoServicio {
                 case 3:
                     fecha = new Date(año - 1900, festivo.getMes() - 1, festivo.getDia());
                     fecha = servicio.agregarDias(domingoRamos, festivo.getDiasPascua());
-                    System.out.println("dias pascua " + festivo.getDiasPascua());
+
                     nuevaLista.add(fecha);
                     break;
 
@@ -100,29 +97,26 @@ public class FestivoServicio implements IFestivoServicio {
 
     public String comprobacionFestivo(Date fechaEntrada) {
         Calendar calendario = Calendar.getInstance();
-    calendario.setTime(fechaEntrada);
-    int año = calendario.get(Calendar.YEAR);
-    
-    String esFestivo = "No es festivo";
-    List<Date> listaFestivos = listaDiasFestivos(año);
+        calendario.setTime(fechaEntrada);
+        int año = calendario.get(Calendar.YEAR);
 
-        
+        String esFestivo = "No es festivo";
+        List<Date> listaFestivos = listaDiasFestivos(año);
 
         for (Date fecha : listaFestivos) {
-            //limpio las entradas, hay difernecias de segundos
+            // limpio las entradas, hay difernecias de segundos
             Calendar fechaFestiva = Calendar.getInstance();
-        fechaFestiva.setTime(fecha);
-        fechaFestiva.set(Calendar.HOUR_OF_DAY, 0);
-        fechaFestiva.set(Calendar.MINUTE, 0);
-        fechaFestiva.set(Calendar.SECOND, 0);
-        fechaFestiva.set(Calendar.MILLISECOND, 0);
-        Calendar fechaEntradaCalendario = Calendar.getInstance();
-        fechaEntradaCalendario.setTime(fechaEntrada);
-        fechaEntradaCalendario.set(Calendar.HOUR_OF_DAY, 0);
-        fechaEntradaCalendario.set(Calendar.MINUTE, 0);
-        fechaEntradaCalendario.set(Calendar.SECOND, 0);
-        fechaEntradaCalendario.set(Calendar.MILLISECOND, 0);
-
+            fechaFestiva.setTime(fecha);
+            fechaFestiva.set(Calendar.HOUR_OF_DAY, 0);
+            fechaFestiva.set(Calendar.MINUTE, 0);
+            fechaFestiva.set(Calendar.SECOND, 0);
+            fechaFestiva.set(Calendar.MILLISECOND, 0);
+            Calendar fechaEntradaCalendario = Calendar.getInstance();
+            fechaEntradaCalendario.setTime(fechaEntrada);
+            fechaEntradaCalendario.set(Calendar.HOUR_OF_DAY, 0);
+            fechaEntradaCalendario.set(Calendar.MINUTE, 0);
+            fechaEntradaCalendario.set(Calendar.SECOND, 0);
+            fechaEntradaCalendario.set(Calendar.MILLISECOND, 0);
 
             if (fechaFestiva.equals(fechaEntradaCalendario)) {
                 esFestivo = "Es festivo";

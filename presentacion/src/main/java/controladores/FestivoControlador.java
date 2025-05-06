@@ -19,11 +19,12 @@ public class FestivoControlador {
     @Autowired
     private IFestivoServicio servicio;
 
-    @PostMapping("/comprobarFecha/")
+    @PostMapping("/comprobarFecha")
      public String comprobacionFestivo(@RequestBody String fecha) {
         String respuesta ="";
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
-        
+        formatoFecha.setLenient(false); //con esto ya no deberia ajustar la fecha el solo
+    
         try { Date fechaFestiva=formatoFecha.parse(fecha);
             respuesta = servicio.comprobacionFestivo(fechaFestiva);
         } catch (Exception  ex) {
